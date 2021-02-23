@@ -1,5 +1,8 @@
 name: Traefik on Docker Swarm
-on: push
+on:
+  push:
+    paths:
+      - 'basic-docker-swarm/**'
 jobs:
   test:
     runs-on: ubuntu-latest

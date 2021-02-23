@@ -1,5 +1,8 @@
 name: Traefik on Docker Compose
-on: push
+on:
+  push:
+    paths:
+      - 'basic-docker-compose/**'
 jobs:
   test:
     runs-on: ubuntu-latest
