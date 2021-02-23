@@ -6,10 +6,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build the stack
-        run: docker-compose -f basic-docker-compose/docker-compose.yaml up -d && sleep 10
+        run: docker-compose -f basic-docker-compose/docker-compose.yaml up -d && sleepr 20
       - name: Whoami Service
-        run: curl -s --retry 10 --retry-connrefused --show-error --fail http://whoami.127.0.0.1.nip.io:8080/
+        run: curl -s --show-error --fail http://whoami.127.0.0.1.nip.io:8080/
       - name: Traefik API
-        run: curl -s --retry 10 --retry-connrefused --show-error --fail http://dashboard.127.0.0.1.nip.io:8080/api/version
+        run: curl -s --show-error --fail http://dashboard.127.0.0.1.nip.io:8080/api/version
       - name: Traefik Dashboard
-        run: curl -s --retry 10 --retry-connrefused --show-error --fail http://dashboard.127.0.0.1.nip.io:8080/dashboard/
+        run: curl -s --show-error --fail http://dashboard.127.0.0.1.nip.io:8080/dashboard/
