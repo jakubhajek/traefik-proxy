@@ -1,3 +1,4 @@
+[![Traefik on Docker Compose](https://github.com/jakubhajek/traefik-proxy/actions/workflows/compose.yaml/badge.svg)](https://github.com/jakubhajek/traefik-proxy/actions/workflows/compose.yaml)
 # Traefik Proxy running with Docker Compose
 
 This examples presents how to run Traefik Proxy with enabled API and its builtin Dashboard. It also presents a simple routing rule for `Whoami` service. 
