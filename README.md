@@ -1,4 +1,4 @@
-[![Traefik use-cases](https://github.com/jakubhajek/traefik-proxy/actions/workflows/actions.yaml/badge.svg)](https://github.com/jakubhajek/traefik-proxy/actions/workflows/actions.yaml)
+[![Traefik on Docker Compose](https://github.com/jakubhajek/traefik-proxy/actions/workflows/compose.yaml/badge.svg)](https://github.com/jakubhajek/traefik-proxy/actions/workflows/compose.yaml)
 
 # Traefik Proxy example usage
 
