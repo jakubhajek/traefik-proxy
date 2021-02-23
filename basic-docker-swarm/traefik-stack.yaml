@@ -1,6 +1,5 @@
-#
 # docker stack deploy traefik-stack -c traefik-stack.yaml --prune
-#
+
 version: "3.8"
 
 services:
