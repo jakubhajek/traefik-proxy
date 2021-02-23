@@ -1,0 +1,17 @@
+name: Traefik on Docker Compose
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Initialize Docker Swarm Cluster
+        run: docker swarm init
+      - name: Deploy the stack
+        run: docker stack deploy traefik-stack -c basic-docker-swarm/traefik-stack.yaml && sleep 20
+      - name: Whoami Service
+        run: curl -s --retry 10 --retry-connrefused --show-error --fail http://whoami.127.0.0.1.nip.io
+      - name: Traefik API
+        run: curl -s --retry 10 --retry-connrefused --show-error --fail http://dashboard.127.0.0.1.nip.io/api/version
+      - name: Traefik Dashboard
+        run: curl -s --retry 10 --retry-connrefused --show-error --fail http://dashboard.127.0.0.1.nip.io/dashboard/

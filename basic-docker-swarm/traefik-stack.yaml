@@ -1,0 +1,64 @@
+#
+# docker stack deploy traefik-stack -c traefik-stack.yaml --prune
+#
+version: "3.8"
+
+services:
+  traefik:
+    image: "traefik:v2.4.5"
+    healthcheck:
+      test: wget --quiet --tries=1 --spider http://ping.127.0.0.1.nip.io/ping || exit 1
+      interval: 10s
+      timeout: 1s
+      retries: 3
+      start_period: 10s
+    command:
+      - "--global.sendAnonymousUsage=true"
+      - "--api.insecure=true"
+      - "--api.dashboard=true"
+      - "--providers.docker=true"
+      - "--providers.docker.swarmmode=true"
+      - "--providers.docker.network=proxy"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+        #- "--entrypoints.ping.address=:8082"
+      - "--ping.entryPoint=web"
+      - "--log.level=DEBUG"
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      labels:
+        - "traefik.enable=true"
+        # Routing for /dashboard and /api
+        - "traefik.http.routers.dashboard.rule=Host(`dashboard.127.0.0.1.nip.io`) && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))"
+        - "traefik.http.routers.dashboard.service=api@internal"
+        - "traefik.http.routers.dashboard.entrypoints=web"
+        # Routing for PING
+        - "traefik.http.routers.ping.rule=Host(`ping.127.0.0.1.nip.io`) && Path(`/ping`)"
+        - "traefik.http.routers.ping.service=ping@internal"
+        - "traefik.http.routers.ping.entrypoints=web"
+        # Dummy Service
+        - "traefik.http.services.dummy-service.loadbalancer.server.port=59999"
+    networks:
+      - proxy
+    ports:
+      - 80:80
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+  whoami:
+    image: "traefik/whoami"
+    networks:
+      - proxy
+    deploy:
+      replicas: 1
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.whoami.rule=Host(`whoami.127.0.0.1.nip.io`)"
+        - "traefik.http.routers.whoami.entrypoints=web"
+        - "traefik.http.services.whoami.loadbalancer.server.port=80"
+networks:
+  proxy:
+    driver: overlay
+    name: proxy
+    attachable: true
