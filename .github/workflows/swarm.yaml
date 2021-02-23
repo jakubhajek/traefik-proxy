@@ -1,4 +1,4 @@
-name: Traefik on Docker Compose
+name: Traefik on Docker Swarm
 on: push
 jobs:
   test:
