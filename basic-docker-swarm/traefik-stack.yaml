@@ -20,7 +20,6 @@ services:
       - "--providers.docker.network=proxy"
       - "--providers.docker.exposedbydefault=false"
       - "--entrypoints.web.address=:80"
-        #- "--entrypoints.ping.address=:8082"
       - "--ping.entryPoint=web"
       - "--log.level=DEBUG"
     deploy:
@@ -43,10 +42,14 @@ services:
       - proxy
     ports:
       - 80:80
+      - 8080:8080
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
+
   whoami:
     image: "traefik/whoami"
+    environment:
+      - WHOAMI_NAME="iamfoo"
     networks:
       - proxy
     deploy:
