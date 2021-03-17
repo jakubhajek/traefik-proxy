@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: whoami
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+  labels:
+spec:
+  ingressClassName: traefik-lb
+  rules:
+    - host: whoami.127.0.0.1.nip.io
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: whoami-svc
+              servicePort: 80
