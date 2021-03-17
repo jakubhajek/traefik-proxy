@@ -4,7 +4,7 @@ version: "3.8"
 
 services:
   traefik:
-    image: "traefik:v2.4.5"
+    image: "traefik:v2.4.7"
     healthcheck:
       test: wget --quiet --tries=1 --spider http://ping.127.0.0.1.nip.io/ping || exit 1
       interval: 10s
