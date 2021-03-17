@@ -1,0 +1,15 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: nginx-with-pvc
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`dav.127.0.0.0.1.nip.io`)
+      kind: Rule
+      services:
+        - name: nginx-with-pvc
+          port: 80
+  tls:
+    certResolver: letsencrypt

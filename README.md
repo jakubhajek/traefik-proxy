@@ -5,5 +5,6 @@
 
 The aim of that repository is to present the common usage of Traefik Proxy
 
-1. [Basic usage with Docker Compose](basic-docker-compose)
-2. [Basic usage with Docker Swarm](basic-docker-swarm)
+1. [Traefik and Nginx with Webdav](nginx-webdav)
+2. [Basic usage with Docker Compose](basic-docker-compose)
+3. [Basic usage with Docker Swarm](basic-docker-swarm)
