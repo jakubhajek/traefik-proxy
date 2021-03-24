@@ -7,7 +7,7 @@ spec:
     - web
   routes:
     - kind: Rule
-      match: Host(`crd.178.63.98.242.nip.io`)
+      match: Host(`crd.127.0.0.1.nip.io`)
       services:
         - kind: Service
           name: whoami-svc
