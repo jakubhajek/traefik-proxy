@@ -1,0 +1,24 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: whoami-https
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`crd.127.0.0.1.nip.io`) || Host(`whoami-a.127.0.0.1.nip.io`)
+      services:
+        - kind: Service
+          name: whoami-svc
+          port: 80
+      middlewares:
+        - name: default-security@kubernetescrd
+  tls:
+    certResolver: le
+    domains:
+      - main: whoami.127.0.0.1.nip.io
+        sans:
+          - whoami-a.127.0.0.1.nip.io
+    options:
+      name: mytlsoption

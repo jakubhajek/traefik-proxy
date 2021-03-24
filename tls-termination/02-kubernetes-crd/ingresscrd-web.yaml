@@ -1,0 +1,17 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: whoami
+spec:
+  entryPoints:
+    - web
+  routes:
+    - kind: Rule
+      match: Host(`crd.178.63.98.242.nip.io`)
+      services:
+        - kind: Service
+          name: whoami-svc
+          port: 80
+      middlewares:
+        - name: default-redirectscheme@kubernetescrd
+        - name: default-security@kubernetescrd

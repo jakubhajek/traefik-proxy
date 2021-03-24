@@ -1,0 +1,12 @@
+additionalArguments:
+  - "--entryPoints.web.forwardedHeaders.insecure"
+  - "--log.level=DEBUG"
+  - "--log.format=json"
+  - "--providers.kubernetesingress.ingressclass=traefik-lb"
+
+ports:
+  tcp:
+   port: 1389
+   exposePort: 389
+   protocol: TCP
+

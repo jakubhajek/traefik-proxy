@@ -1,0 +1,19 @@
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: whoami-https
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.tls: "true"
+    traefik.ingress.kubernetes.io/router.tls.certresolver: le
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: whoami.127.0.0.1.nip.io
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: whoami-svc
+              servicePort: 80

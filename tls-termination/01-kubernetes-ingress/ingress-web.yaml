@@ -1,13 +1,14 @@
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  name: whoami
+  name: whoami-http
   annotations:
-    traefik.ingress.kubernetes.io/router.entrypoints: web,websecure
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+    traefik.ingress.kubernetes.io/router.middlewares: default-redirectscheme@kubernetescrd
 spec:
-  ingressClassName: traefik-internal
+  ingressClassName: traefik
   rules:
-    - host: whoami.213.189.52.253.nip.io
+    - host: w.127.0.0.1.nip.io
       http:
         paths:
           - path: /
