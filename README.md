@@ -5,6 +5,7 @@
 
 The aim of that repository is to present the common usage of Traefik Proxy
 
+1. [TLS Termination through Ingress and Ingressroute(CRD)](tls-termination)
 1. [Traefik with Ingressclass](ingressclass)
 2. [Traefik and Nginx with Webdav](nginx-webdav)
 3. [Basic usage with Docker Compose](basic-docker-compose)
