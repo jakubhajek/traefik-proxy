@@ -7,10 +7,13 @@ metadata:
 spec:
   ingressClassName: traefik-internal
   rules:
-    - host: whoami.213.189.52.253.nip.io
+    - host: whoami.120.0.0.1.nip.io
       http:
         paths:
           - path: /
+            pathType: Prefix
             backend:
-              serviceName: whoami-svc
-              servicePort: 80
+              service:
+                name: whoami-svc
+                service:
+                  port: 80
