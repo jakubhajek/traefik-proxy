@@ -1,4 +1,4 @@
-# 
+# Traefik with TCP router and Varnish  
 
 This is simple example that presents how to use Traefik and Varnish together. 
 
