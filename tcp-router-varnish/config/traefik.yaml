@@ -1,0 +1,31 @@
+global:
+  checkNewVersion: true
+  sendAnonymousUsage: true
+log:
+  level: "DEBUG"
+api:
+  dashboard: true
+  debug: true
+
+entryPoints:
+  web:
+    address: ":80"
+  websecure:
+    address: ":443"
+
+providers:
+  docker:
+    endpoint: unix://var/run/docker.sock
+    watch: true
+    exposedByDefault: false
+  file:
+    directory: /dynamic/
+    watch: true
+
+certificatesResolvers:
+  sample:
+    acme:
+      email: "john@replace-me.com"
+      caServer: https://acme-staging-v02.api.letsencrypt.org/directory
+      storage: "/tmp/acme-letsencrypt.json"
+      tlsChallenge: {}

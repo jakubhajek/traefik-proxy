@@ -10,3 +10,4 @@ The aim of that repository is to present the common usage of Traefik Proxy
 2. [Traefik and Nginx with Webdav](nginx-webdav)
 3. [Basic usage with Docker Compose](basic-docker-compose)
 4. [Basic usage with Docker Swarm](basic-docker-swarm)
+5. [Varnish and Traefik with TCP](tcp-router-varnish)

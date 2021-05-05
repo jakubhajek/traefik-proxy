@@ -1,0 +1,21 @@
+tcp:
+  routers:
+    Router-1:
+      entryPoints:
+        - websecure
+      rule: "HostSNI(`*`)"
+      service: "varnish-svc"
+      tls:
+        certResolver: sample"
+        domains:
+          - main: "example.com"
+            sans:
+              - "*.example.com"
+
+  services:
+    varnish-svc:
+      loadBalancer:
+        servers:
+          - address: "varnish:8800"
+        proxyProtocol:
+          version: 2
