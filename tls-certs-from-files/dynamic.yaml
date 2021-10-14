@@ -1,0 +1,16 @@
+http:
+  routers:
+    appliance:
+      rule: Host(`whoami.127.0.0.1.nip.io`)
+      service: whoami
+      tls: {}
+  services:
+    whoami:
+      loadBalancer:
+        servers:
+          - url: http://127.0.0.1:8081
+
+tls:
+  certificates:
+    - certFile: /etc/traefik/certs/whoami.crt
+      keyFile: /etc/traefik/certs/whoami-key.key
